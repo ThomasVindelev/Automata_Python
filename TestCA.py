@@ -4,8 +4,9 @@ class ca:
         self.ca = startIndex
         self.rule = rule
         self.gen = generations
-        self.dic = {0:'-', 1:'*'}
-        self.ruleDic = {'111':0, '110':0, '101':0, '100':1, '011':1, '010':1, '001':1, '000':0}
+        self.dic = {0:'░', 1:'█'}
+        self.binary = "{0:08b}".format(rule)
+        self.ruleDic = {'111':int(self.binary[0]), '110':int(self.binary[1]), '101':int(self.binary[2]), '100':int(self.binary[3]), '011':int(self.binary[4]), '010':int(self.binary[5]), '001':int(self.binary[6]), '000':int(self.binary[7])}
 
     def __call__(self):
         print(''.join([self.dic[e] for e in self.ca]))
@@ -14,10 +15,9 @@ class ca:
         while (step < self.gen):
             ca_new = []
             pattern = ''
+
             for i in range(len(self.ca)):
 
-                #The entire ruleset is static, predefined and wrong
-                #Needs to computate proper workings via the rule given on init
                 if(i == 0):
                     pattern += '0'
                 else:
@@ -32,22 +32,16 @@ class ca:
 
                 ca_new.append(self.ruleDic[pattern])
                 pattern = ''
-                ##############################
-                ##############################
 
             print(''.join([self.dic[e] for e in ca_new]))
-
             self.ca = ca_new[:]
-
             step += 1
 
-
-
 givenStartIndex = [
-         0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,
+         0,0,0,0,0,0,0,0,0,0,0,
          0,0,0,0,0,0,0,0,0,0, 0,1,0,0,0,0,0,0,0,0,
-         0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,  0,0,0,0]
+         0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 
-cc = ca(givenStartIndex, 30, 32)
+cc = ca(givenStartIndex, 7, 21)
 cc()
