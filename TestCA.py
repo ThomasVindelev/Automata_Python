@@ -5,6 +5,7 @@ class ca:
         self.rule = rule
         self.gen = generations
         self.dic = {0:'-', 1:'*'}
+        self.ruleDic = {'111':0, '110':0, '101':0, '100':1, '011':1, '010':1, '001':1, '000':0}
 
     def __call__(self):
         print(''.join([self.dic[e] for e in self.ca]))
@@ -12,28 +13,25 @@ class ca:
         step = 1
         while (step < self.gen):
             ca_new = []
-
+            pattern = ''
             for i in range(len(self.ca)):
 
                 #The entire ruleset is static, predefined and wrong
                 #Needs to computate proper workings via the rule given on init
-                if i > 0 and i < len(self.ca) - 1:
-                    if self.ca[i - 1] == self.ca[i + 1]:
-                        ca_new.append(0)
-                    else:
-                        ca_new.append(1)
+                if(i == 0):
+                    pattern += '0'
+                else:
+                    pattern += str(self.ca[i-1])
 
-                elif (i == 0):
-                    if self.ca[1] == 1:
-                        ca_new.append(1)
-                    else:
-                        ca_new.append(0)
+                pattern += str(self.ca[i])
 
-                elif (i == len(self.ca)-1):
-                    if self.ca[62] == 1:
-                        ca_new.append(1)
-                    else:
-                        ca_new.append(0)
+                if(i == len(self.ca)-1):
+                    pattern += "0"
+                else:
+                    pattern += str(self.ca[i+1])
+
+                ca_new.append(self.ruleDic[pattern])
+                pattern = ''
                 ##############################
                 ##############################
 
