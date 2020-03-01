@@ -2,7 +2,7 @@ class Cellular_Automata:
 
 
     """
-    Initlializer for class with params giving initial state of generation
+    Initializer for class with params giving initial state of generation
     Rule determines the binary number used to compare rows
     Generations is the number of times the algorithm will run for
     """
