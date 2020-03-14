@@ -1,7 +1,15 @@
 class Cellular_Automata:
 
-
     """
+    >>> cc = Cellular_Automata([0,0,1,0,0], 3, 4)()
+    ░░█░░
+    ██░░█
+    ░░░█░
+    ███░░
+
+    >>> print(Cellular_Automata([0,0,1,0,0], 3, 4).binary)
+    00000011
+
     Initializer for class with params giving initial state of generation
     Rule determines the binary number used to compare rows
     Generations is the number of times the algorithm will run for
@@ -69,16 +77,6 @@ class Cellular_Automata:
 
             step += 1
 
-"""
-Beginning sequence of numbers
-This is mandatory in order for this to work
-"""
-
-givenStartIndex = [
-         0,0,0,0,0,0,0,0,0,0,0,
-         0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,
-         0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-
-cc = Cellular_Automata(givenStartIndex, 5, 23)
-cc()
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
